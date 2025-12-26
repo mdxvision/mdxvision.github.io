@@ -3,24 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AOP Demo - Intent Extraction</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>AOP Demo - Agentic Operating Platform</title>
     <style>
-        :root {
-            --text-primary: #1d1d1f;
-            --text-secondary: #86868b;
-            --background: #fff;
-            --accent: #0071e3;
-            --accent-hover: #0077ed;
-            --gradient-start: #7928ca;
-            --gradient-end: #ff0080;
-            --card-bg: #f5f5f7;
-            --success: #34c759;
-            --warning: #ff9500;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -28,194 +12,384 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--text-primary);
-            background: linear-gradient(180deg, #f5f5f7 0%, #fff 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
+            color: #e0e0e0;
         }
 
-        /* Header */
-        header {
-            padding: 20px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 1200px;
+        .container {
+            max-width: 800px;
             margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
         }
 
         .logo {
-            font-size: 21px;
-            font-weight: 600;
-            color: var(--text-primary);
-            text-decoration: none;
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #a0a0a0;
         }
 
         .back-link {
-            color: var(--accent);
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #00d4ff;
             text-decoration: none;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            font-size: 0.9rem;
         }
 
         .back-link:hover {
             text-decoration: underline;
         }
 
-        /* Main Container */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 24px 80px;
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
         }
 
-        /* Hero */
-        .demo-hero {
-            text-align: center;
-            margin-bottom: 48px;
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .demo-hero h1 {
-            font-size: clamp(32px, 5vw, 48px);
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 12px;
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .card-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(180deg, #00d4ff, #7b2cbf);
+            border-radius: 2px;
         }
 
-        .demo-hero p {
-            font-size: 18px;
-            color: var(--text-secondary);
-            max-width: 500px;
-            margin: 0 auto;
+        .input-group {
+            margin-bottom: 20px;
         }
 
-        /* Input Section */
-        .input-section {
-            background: #fff;
-            border-radius: 20px;
-            padding: 32px;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-            margin-bottom: 32px;
-        }
-
-        .input-label {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-secondary);
-            margin-bottom: 12px;
+        label {
             display: block;
-        }
-
-        .input-wrapper {
-            position: relative;
+            margin-bottom: 8px;
+            color: #b0b0b0;
+            font-size: 0.9rem;
         }
 
         textarea {
             width: 100%;
-            min-height: 120px;
-            padding: 16px;
-            font-size: 17px;
-            font-family: inherit;
-            border: 2px solid #e5e5e5;
-            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font-size: 1rem;
             resize: vertical;
-            transition: border-color 0.3s, box-shadow 0.3s;
+            min-height: 120px;
+            transition: border-color 0.3s;
+            font-family: inherit;
         }
 
         textarea:focus {
             outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
+            border-color: #00d4ff;
         }
 
         textarea::placeholder {
-            color: #c7c7c7;
+            color: #666;
         }
 
-        .button-row {
+        .divider {
             display: flex;
-            gap: 12px;
-            margin-top: 16px;
-            flex-wrap: wrap;
+            align-items: center;
+            margin: 25px 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .divider span {
+            padding: 0 15px;
+        }
+
+        /* Recording section */
+        .record-section {
+            text-align: center;
+            padding: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .record-btn {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid #ff4757;
+            background: rgba(255, 71, 87, 0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+        }
+
+        .record-btn:hover {
+            background: rgba(255, 71, 87, 0.3);
+            transform: scale(1.05);
+        }
+
+        .record-btn.recording {
+            background: #ff4757;
+            animation: pulse-record 1.5s infinite;
+        }
+
+        .record-btn-inner {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #ff4757;
+            transition: all 0.3s;
+        }
+
+        .record-btn.recording .record-btn-inner {
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            background: #fff;
+        }
+
+        @keyframes pulse-record {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.4); }
+            50% { box-shadow: 0 0 0 20px rgba(255, 71, 87, 0); }
+        }
+
+        .record-status {
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .record-status.recording {
+            color: #ff4757;
+            font-weight: 600;
+        }
+
+        .record-timer {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            font-family: monospace;
+            display: none;
+        }
+
+        .record-timer.active {
+            display: block;
+        }
+
+        .record-hint {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 15px;
+        }
+
+        .audio-preview {
+            margin-top: 15px;
+            display: none;
+        }
+
+        .audio-preview.visible {
+            display: block;
+        }
+
+        .audio-preview audio {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .audio-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .file-upload {
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-upload:hover {
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .file-upload.dragover {
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .file-upload-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .file-upload-text {
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        .file-upload-hint {
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        .file-name {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 5px;
+            color: #00d4ff;
+            display: none;
+        }
+
+        input[type="file"] {
+            display: none;
         }
 
         .btn {
-            padding: 14px 28px;
-            font-size: 16px;
-            font-weight: 500;
+            display: inline-block;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
             border: none;
-            border-radius: 980px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
             color: #fff;
+            width: 100%;
         }
 
         .btn-primary:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 24px rgba(121, 40, 202, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
         }
 
         .btn-primary:disabled {
-            opacity: 0.6;
+            opacity: 0.5;
             cursor: not-allowed;
             transform: none;
         }
 
         .btn-secondary {
-            background: var(--card-bg);
-            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            font-size: 0.9rem;
         }
 
-        .btn-secondary:hover {
-            background: #e8e8ed;
-        }
-
-        /* Examples */
         .examples {
-            margin-top: 24px;
+            margin-top: 40px;
         }
 
-        .examples-label {
-            font-size: 13px;
-            color: var(--text-secondary);
-            margin-bottom: 10px;
+        .examples-title {
+            font-size: 1rem;
+            color: #888;
+            margin-bottom: 15px;
         }
 
         .example-chips {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 10px;
         }
 
         .example-chip {
-            padding: 8px 14px;
-            font-size: 13px;
-            background: var(--card-bg);
-            border: none;
-            border-radius: 980px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #a0a0a0;
             cursor: pointer;
-            transition: all 0.2s;
-            color: var(--text-primary);
+            transition: all 0.3s;
         }
 
         .example-chip:hover {
-            background: #e8e8ed;
-            transform: translateY(-1px);
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
+            color: #00d4ff;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #888;
+        }
+
+        .tab:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .tab.active {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
+            color: #00d4ff;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
         }
 
         /* Results Section */
@@ -227,191 +401,252 @@
             display: block;
         }
 
-        .results-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
             margin-bottom: 20px;
         }
 
-        .results-header h2 {
-            font-size: 24px;
-            font-weight: 600;
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
         }
 
-        .intent-count {
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            color: #fff;
-            padding: 6px 14px;
-            border-radius: 980px;
-            font-size: 14px;
-            font-weight: 500;
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        /* Intent Card */
-        .intent-card {
-            background: #fff;
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 16px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-            border-left: 4px solid var(--gradient-start);
-            animation: slideIn 0.3s ease-out;
+        .stat-label {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 5px;
         }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .intent-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
+
+        .intent-item {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid #00d4ff;
+            transition: transform 0.2s;
+        }
+
+        .intent-item:hover {
+            transform: translateX(5px);
+        }
+
+        .intent-item.high { border-color: #00ff88; }
+        .intent-item.medium { border-color: #ffc800; }
+        .intent-item.low { border-color: #ff6b7a; }
 
         .intent-header {
             display: flex;
-            align-items: flex-start;
             justify-content: space-between;
-            margin-bottom: 16px;
+            align-items: flex-start;
+            margin-bottom: 12px;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
         }
 
         .intent-type {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 12px;
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            color: #fff;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            color: #888;
+            padding: 4px 10px;
+            background: rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
         }
 
-        .intent-type-icon {
-            font-size: 16px;
-        }
-
-        .confidence-badge {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 13px;
-            color: var(--text-secondary);
+        .intent-action {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-top: 5px;
         }
 
         .confidence-bar {
-            width: 60px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .confidence-track {
+            width: 80px;
             height: 6px;
-            background: #e5e5e5;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 3px;
             overflow: hidden;
         }
 
         .confidence-fill {
             height: 100%;
-            background: var(--success);
             border-radius: 3px;
-            transition: width 0.5s ease-out;
+            transition: width 0.5s;
         }
 
-        .intent-action {
-            font-size: 18px;
-            font-weight: 500;
-            color: var(--text-primary);
-            margin-bottom: 16px;
-            line-height: 1.4;
+        .confidence-fill.high { background: linear-gradient(90deg, #00ff88, #00d4ff); }
+        .confidence-fill.medium { background: linear-gradient(90deg, #ffc800, #ff8c00); }
+        .confidence-fill.low { background: linear-gradient(90deg, #ff6b7a, #ff4757); }
+
+        .confidence-text {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #888;
         }
 
         .intent-meta {
             display: flex;
+            gap: 10px;
+            margin-top: 10px;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 16px;
         }
 
         .meta-tag {
+            font-size: 0.8rem;
             padding: 4px 10px;
-            background: var(--card-bg);
-            border-radius: 6px;
-            font-size: 12px;
-            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            color: #888;
         }
 
-        .meta-tag.urgency-immediate {
-            background: #ffebeb;
-            color: #d00;
+        .meta-tag.explicit {
+            background: rgba(0, 212, 255, 0.15);
+            color: #00d4ff;
         }
 
-        .meta-tag.urgency-soon {
-            background: #fff3e0;
-            color: #e65100;
+        .meta-tag.implicit {
+            background: rgba(123, 44, 191, 0.15);
+            color: #c77dff;
         }
 
-        .entities-section {
-            background: var(--card-bg);
-            border-radius: 10px;
-            padding: 16px;
+        .meta-tag.urgent {
+            background: rgba(255, 71, 87, 0.15);
+            color: #ff6b7a;
         }
 
-        .entities-title {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 12px;
-        }
-
-        .entities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 10px;
-        }
-
-        .entity-item {
+        .entities-list {
+            margin-top: 12px;
             display: flex;
-            flex-direction: column;
-            gap: 2px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .entity-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            font-size: 0.8rem;
         }
 
         .entity-key {
-            font-size: 11px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
+            color: #888;
         }
 
         .entity-value {
-            font-size: 14px;
+            color: #00d4ff;
             font-weight: 500;
-            color: var(--text-primary);
         }
 
-        /* Loading State */
-        .loading {
+        /* Actions */
+        .action-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .action-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .action-info {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .action-name {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .action-integrations {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .action-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .status-indicator.ready {
+            background: #00ff88;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+
+        .status-indicator.pending {
+            background: #ffc800;
+        }
+
+        /* Loading */
+        .loading-overlay {
             display: none;
-            text-align: center;
-            padding: 48px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
         }
 
-        .loading.visible {
-            display: block;
+        .loading-overlay.visible {
+            display: flex;
         }
 
         .spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid #e5e5e5;
-            border-top-color: var(--gradient-start);
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: #00d4ff;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
-            margin: 0 auto 16px;
+            margin-bottom: 20px;
         }
 
         @keyframes spin {
@@ -419,48 +654,35 @@
         }
 
         .loading-text {
-            color: var(--text-secondary);
-            font-size: 15px;
+            color: #fff;
+            font-size: 1.1rem;
         }
 
-        /* Error State */
+        /* Error */
         .error-message {
             display: none;
-            background: #ffebeb;
-            color: #d00;
-            padding: 16px 20px;
-            border-radius: 12px;
-            margin-bottom: 24px;
-            font-size: 14px;
+            background: rgba(255, 71, 87, 0.2);
+            border: 1px solid #ff4757;
+            color: #ff6b7a;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
 
         .error-message.visible {
             display: block;
         }
 
-        /* Empty State */
-        .empty-state {
-            text-align: center;
-            padding: 48px;
-            color: var(--text-secondary);
-        }
-
-        .empty-state-icon {
-            font-size: 48px;
-            margin-bottom: 16px;
-            opacity: 0.5;
-        }
-
-        /* Footer */
         footer {
             text-align: center;
-            padding: 24px;
-            color: var(--text-secondary);
-            font-size: 13px;
+            margin-top: 50px;
+            padding: 20px;
+            color: #555;
+            font-size: 0.85rem;
         }
 
         footer a {
-            color: var(--accent);
+            color: #00d4ff;
             text-decoration: none;
         }
 
@@ -468,137 +690,320 @@
             text-decoration: underline;
         }
 
-        /* Responsive */
         @media (max-width: 600px) {
-            .input-section {
-                padding: 20px;
-            }
-
-            .intent-card {
-                padding: 18px;
-            }
-
-            .button-row {
+            .tabs {
                 flex-direction: column;
             }
 
-            .btn {
-                width: 100%;
-                justify-content: center;
+            .intent-header {
+                flex-direction: column;
+            }
+
+            .action-item {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <a href="index.html" class="logo">AOP</a>
-        <a href="index.html" class="back-link">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M10 12L6 8L10 4"/>
-            </svg>
-            Back to Home
-        </a>
-    </header>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-link">← Back to Home</a>
+            <div class="logo">AOP</div>
+            <p class="tagline">Agentic Operating Platform Demo</p>
+        </header>
 
-    <main class="container">
-        <div class="demo-hero">
-            <h1>Try Intent Extraction</h1>
-            <p>Type naturally and watch AOP extract actionable intents from your conversation.</p>
-        </div>
+        <!-- Input Section -->
+        <div id="inputSection">
+            <div class="card">
+                <h2 class="card-title">Enter Conversation</h2>
 
-        <div class="input-section">
-            <label class="input-label">Enter your conversation or command</label>
-            <div class="input-wrapper">
-                <textarea id="inputText" placeholder="e.g., &quot;I need to schedule a meeting with Sarah tomorrow at 2pm and also order lunch for the team&quot;"></textarea>
-            </div>
-            <div class="button-row">
-                <button class="btn btn-primary" id="extractBtn" onclick="extractIntents()">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="M21 21l-4.35-4.35"/>
-                    </svg>
-                    Extract Intents
+                <div class="tabs">
+                    <div class="tab active" data-tab="text">Text Input</div>
+                    <div class="tab" data-tab="record">Record Audio</div>
+                    <div class="tab" data-tab="upload">Upload Audio</div>
+                </div>
+
+                <!-- Text Input Tab -->
+                <div class="tab-content active" id="tab-text">
+                    <div class="input-group">
+                        <label for="text">Type or paste your conversation:</label>
+                        <textarea
+                            id="textInput"
+                            placeholder="Example: I need to schedule a meeting with John tomorrow at 3pm, and then order some lunch from that Italian place we like. Also, remind me to call mom this weekend."
+                        ></textarea>
+                    </div>
+                </div>
+
+                <!-- Record Tab -->
+                <div class="tab-content" id="tab-record">
+                    <div class="record-section">
+                        <div class="record-status" id="recordStatus">Click to start recording</div>
+                        <div class="record-timer" id="recordTimer">00:00</div>
+                        <button type="button" class="record-btn" id="recordBtn">
+                            <div class="record-btn-inner"></div>
+                        </button>
+                        <div class="record-hint">Record a conversation. Speak naturally - AOP will analyze it.</div>
+
+                        <div class="audio-preview" id="audioPreview">
+                            <audio id="audioPlayer" controls></audio>
+                            <div class="audio-info">
+                                <span id="audioDuration">Duration: --</span>
+                                <span id="audioSize">Size: --</span>
+                            </div>
+                            <button type="button" class="btn btn-secondary" id="clearRecording">
+                                Clear & Record Again
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upload Tab -->
+                <div class="tab-content" id="tab-upload">
+                    <div class="input-group">
+                        <div class="file-upload" id="dropZone">
+                            <div class="file-upload-icon">📁</div>
+                            <div class="file-upload-text">Drop audio file here or click to browse</div>
+                            <div class="file-upload-hint">Supports WAV, MP3, M4A, OGG, WebM</div>
+                            <div class="file-name" id="fileName"></div>
+                        </div>
+                        <input type="file" id="audioFile" accept="audio/*">
+                    </div>
+                </div>
+
+                <div class="error-message" id="errorMessage"></div>
+
+                <button type="button" class="btn btn-primary" id="submitBtn">
+                    Process with AOP
                 </button>
-                <button class="btn btn-secondary" onclick="clearAll()">Clear</button>
             </div>
 
             <div class="examples">
-                <div class="examples-label">Try an example:</div>
-                <div class="example-chips">
-                    <button class="example-chip" onclick="useExample(this)">Book an Uber to the airport at 6am</button>
-                    <button class="example-chip" onclick="useExample(this)">Remind me to call mom at 5pm</button>
-                    <button class="example-chip" onclick="useExample(this)">Order pizza and cancel my gym class</button>
-                    <button class="example-chip" onclick="useExample(this)">Schedule dentist appointment next week</button>
+                <div class="examples-title">Try these example conversations:</div>
+                <div class="example-chips" id="exampleChips">
+                    <span class="example-chip" data-text="I need to schedule a meeting with John tomorrow at 3pm, and then order some lunch from that Italian place we like. Also, remind me to call mom this weekend.">Multi-task request</span>
+                    <span class="example-chip" data-text="Hey, can you book me an Uber to the airport tomorrow at 6am? My flight is at 9am. Also, I need a dinner reservation at Nobu for tonight, 4 people at 8pm.">Travel & dining</span>
+                    <span class="example-chip" data-text="I'm hungry, want to order some food? Let's get pizza from that Italian place. Large pepperoni. Oh, and remind me to pay you back tomorrow.">Friends ordering food</span>
+                    <span class="example-chip" data-text="We need to schedule a team meeting for next Monday to discuss the project timeline. Make it 2pm. Also, send Sarah an email about the deadline extension with the updated timeline document.">Work conversation</span>
+                    <span class="example-chip" data-text="Mom: Don't forget to order groceries for the weekend - milk, bread, eggs, and vegetables.
+Dad: I'll do that now. I'll also set a reminder for you to call grandma on Sunday.">Family planning</span>
                 </div>
             </div>
         </div>
 
-        <div class="error-message" id="errorMessage"></div>
+        <!-- Results Section -->
+        <div class="results-section" id="resultsSection">
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 class="card-title" style="margin-bottom: 0;">Results</h2>
+                    <button class="btn btn-secondary" id="newAnalysisBtn">New Analysis</button>
+                </div>
 
-        <div class="loading" id="loading">
-            <div class="spinner"></div>
-            <div class="loading-text">Analyzing your text with AI...</div>
-        </div>
-
-        <div class="results-section" id="results">
-            <div class="results-header">
-                <h2>Detected Intents</h2>
-                <span class="intent-count" id="intentCount">0 intents</span>
+                <div class="stats-grid" id="statsGrid"></div>
             </div>
-            <div id="intentsContainer"></div>
-        </div>
-    </main>
 
-    <footer>
-        Powered by <a href="https://github.com/mdxvision/aop-project" target="_blank">AOP</a> &middot; Built with Claude AI
-    </footer>
+            <div class="card">
+                <h2 class="card-title">Extracted Intents</h2>
+                <div class="intent-list" id="intentsList"></div>
+            </div>
+
+            <div class="card" id="actionsCard" style="display: none;">
+                <h2 class="card-title">What AOP Would Do</h2>
+                <div class="action-list" id="actionsList"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Powered by <a href="https://github.com/mdxvision/aop-project" target="_blank">AOP</a> &middot; Built with Claude AI</p>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <div class="loading-text">Analyzing with AI...</div>
+    </div>
 
     <script>
         const API_BASE = 'https://true-bats-shout.loca.lt';
         const API_KEY = 'aop__vopt9Sjon5i38SZduEN3YPfNFVC-GESqIdiInVRXcI';
 
-        const intentIcons = {
-            schedule: '📅',
-            message: '💬',
-            transport: '🚗',
-            purchase: '🛒',
-            reminder: '⏰',
-            information: '📋',
-            booking: '🎫',
-            task: '✅',
-            payment: '💳',
-            cancellation: '❌',
-            default: '🎯'
-        };
+        // Tab handling
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
 
-        function useExample(btn) {
-            document.getElementById('inputText').value = btn.textContent;
-            extractIntents();
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetTab = tab.dataset.tab;
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(tc => tc.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById('tab-' + targetTab).classList.add('active');
+            });
+        });
+
+        // Recording
+        let mediaRecorder = null;
+        let audioChunks = [];
+        let recordingStartTime = null;
+        let timerInterval = null;
+        let recordedBlob = null;
+
+        const recordBtn = document.getElementById('recordBtn');
+        const recordStatus = document.getElementById('recordStatus');
+        const recordTimer = document.getElementById('recordTimer');
+        const audioPreview = document.getElementById('audioPreview');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const clearRecordingBtn = document.getElementById('clearRecording');
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
+            const secs = (seconds % 60).toString().padStart(2, '0');
+            return `${mins}:${secs}`;
         }
 
-        function clearAll() {
-            document.getElementById('inputText').value = '';
-            document.getElementById('results').classList.remove('visible');
-            document.getElementById('errorMessage').classList.remove('visible');
-            document.getElementById('intentsContainer').innerHTML = '';
+        function formatSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
         }
 
-        async function extractIntents() {
-            const text = document.getElementById('inputText').value.trim();
-            if (!text) {
-                showError('Please enter some text to analyze.');
+        function clearRecordingState() {
+            if (mediaRecorder && mediaRecorder.state === 'recording') {
+                mediaRecorder.stop();
+            }
+            audioChunks = [];
+            recordedBlob = null;
+            mediaRecorder = null;
+            recordBtn.classList.remove('recording');
+            recordStatus.textContent = 'Click to start recording';
+            recordStatus.classList.remove('recording');
+            recordTimer.classList.remove('active');
+            recordTimer.textContent = '00:00';
+            audioPreview.classList.remove('visible');
+            if (timerInterval) clearInterval(timerInterval);
+        }
+
+        recordBtn.addEventListener('click', async () => {
+            if (mediaRecorder && mediaRecorder.state === 'recording') {
+                mediaRecorder.stop();
+                recordBtn.classList.remove('recording');
+                recordStatus.textContent = 'Processing...';
+                recordStatus.classList.remove('recording');
+                clearInterval(timerInterval);
+            } else {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    mediaRecorder = new MediaRecorder(stream);
+                    audioChunks = [];
+
+                    mediaRecorder.ondataavailable = (e) => {
+                        if (e.data.size > 0) audioChunks.push(e.data);
+                    };
+
+                    mediaRecorder.onstop = () => {
+                        recordedBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                        const audioUrl = URL.createObjectURL(recordedBlob);
+                        audioPlayer.src = audioUrl;
+
+                        const duration = Math.floor((Date.now() - recordingStartTime) / 1000);
+                        document.getElementById('audioDuration').textContent = 'Duration: ' + formatTime(duration);
+                        document.getElementById('audioSize').textContent = 'Size: ' + formatSize(recordedBlob.size);
+
+                        audioPreview.classList.add('visible');
+                        recordStatus.textContent = 'Recording complete!';
+
+                        stream.getTracks().forEach(track => track.stop());
+                    };
+
+                    mediaRecorder.start(1000);
+                    recordingStartTime = Date.now();
+                    recordBtn.classList.add('recording');
+                    recordStatus.textContent = 'Recording... Click to stop';
+                    recordStatus.classList.add('recording');
+                    recordTimer.classList.add('active');
+
+                    timerInterval = setInterval(() => {
+                        const elapsed = Math.floor((Date.now() - recordingStartTime) / 1000);
+                        recordTimer.textContent = formatTime(elapsed);
+                    }, 1000);
+
+                } catch (err) {
+                    recordStatus.textContent = 'Microphone access denied. Please allow access.';
+                    recordStatus.style.color = '#ff4757';
+                }
+            }
+        });
+
+        clearRecordingBtn.addEventListener('click', clearRecordingState);
+
+        // File upload
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('audioFile');
+        const fileName = document.getElementById('fileName');
+
+        dropZone.addEventListener('click', () => fileInput.click());
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            if (e.dataTransfer.files.length) {
+                fileInput.files = e.dataTransfer.files;
+                updateFileName();
+            }
+        });
+
+        fileInput.addEventListener('change', updateFileName);
+
+        function updateFileName() {
+            if (fileInput.files.length) {
+                fileName.textContent = '📁 ' + fileInput.files[0].name;
+                fileName.style.display = 'block';
+            }
+        }
+
+        // Example chips
+        document.querySelectorAll('.example-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                document.getElementById('textInput').value = chip.dataset.text;
+                document.querySelector('.tab[data-tab="text"]').click();
+            });
+        });
+
+        // Submit handler
+        document.getElementById('submitBtn').addEventListener('click', processInput);
+
+        async function processInput() {
+            const textInput = document.getElementById('textInput').value.trim();
+            const activeTab = document.querySelector('.tab.active').dataset.tab;
+
+            let inputText = '';
+
+            if (activeTab === 'text') {
+                if (!textInput) {
+                    showError('Please enter some text to analyze.');
+                    return;
+                }
+                inputText = textInput;
+            } else if (activeTab === 'record' && recordedBlob) {
+                // For now, show message about audio - would need backend transcription
+                showError('Audio processing requires the backend. Please use text input for this demo, or ensure the backend server is running.');
+                return;
+            } else if (activeTab === 'upload' && fileInput.files.length) {
+                showError('Audio processing requires the backend. Please use text input for this demo, or ensure the backend server is running.');
+                return;
+            } else {
+                showError('Please provide text input or record/upload audio.');
                 return;
             }
 
-            const btn = document.getElementById('extractBtn');
-            const loading = document.getElementById('loading');
-            const results = document.getElementById('results');
-            const errorEl = document.getElementById('errorMessage');
-
-            btn.disabled = true;
-            loading.classList.add('visible');
-            results.classList.remove('visible');
-            errorEl.classList.remove('visible');
+            hideError();
+            showLoading();
 
             try {
                 const response = await fetch(`${API_BASE}/api/v1/intents/quick`, {
@@ -608,7 +1013,7 @@
                         'X-API-Key': API_KEY,
                         'Bypass-Tunnel-Reminder': 'true'
                     },
-                    body: JSON.stringify({ text })
+                    body: JSON.stringify({ text: inputText })
                 });
 
                 if (!response.ok) {
@@ -616,114 +1021,140 @@
                 }
 
                 const intents = await response.json();
-                displayIntents(intents);
+                displayResults(intents, inputText);
 
             } catch (error) {
                 console.error('Error:', error);
-                showError(`Failed to extract intents. ${error.message}`);
+                showError(`Failed to process: ${error.message}. Make sure the backend server is running.`);
             } finally {
-                btn.disabled = false;
-                loading.classList.remove('visible');
+                hideLoading();
             }
         }
 
-        function showError(message) {
-            const errorEl = document.getElementById('errorMessage');
-            errorEl.textContent = message;
-            errorEl.classList.add('visible');
-        }
+        function displayResults(intents, inputText) {
+            document.getElementById('inputSection').style.display = 'none';
+            document.getElementById('resultsSection').classList.add('visible');
 
-        function displayIntents(intents) {
-            const container = document.getElementById('intentsContainer');
-            const results = document.getElementById('results');
-            const countEl = document.getElementById('intentCount');
-
-            container.innerHTML = '';
-
-            if (!intents || intents.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-state-icon">🤔</div>
-                        <p>No actionable intents detected. Try being more specific about what you want to do.</p>
-                    </div>
-                `;
-                results.classList.add('visible');
-                countEl.textContent = '0 intents';
-                return;
-            }
-
-            countEl.textContent = `${intents.length} intent${intents.length !== 1 ? 's' : ''}`;
-
-            intents.forEach((intent, index) => {
-                const card = createIntentCard(intent, index);
-                container.appendChild(card);
-            });
-
-            results.classList.add('visible');
-        }
-
-        function createIntentCard(intent, index) {
-            const card = document.createElement('div');
-            card.className = 'intent-card';
-            card.style.animationDelay = `${index * 0.1}s`;
-
-            const icon = intentIcons[intent.intent_type] || intentIcons.default;
-            const confidence = Math.round((intent.confidence || 0) * 100);
-
-            let entitiesHtml = '';
-            if (intent.entities && Object.keys(intent.entities).length > 0) {
-                const entityItems = Object.entries(intent.entities)
-                    .map(([key, value]) => `
-                        <div class="entity-item">
-                            <span class="entity-key">${formatKey(key)}</span>
-                            <span class="entity-value">${value}</span>
-                        </div>
-                    `).join('');
-
-                entitiesHtml = `
-                    <div class="entities-section">
-                        <div class="entities-title">Extracted Entities</div>
-                        <div class="entities-grid">${entityItems}</div>
-                    </div>
-                `;
-            }
-
-            card.innerHTML = `
-                <div class="intent-header">
-                    <span class="intent-type">
-                        <span class="intent-type-icon">${icon}</span>
-                        ${intent.intent_type || 'unknown'}
-                    </span>
-                    <div class="confidence-badge">
-                        <span>${confidence}% confidence</span>
-                        <div class="confidence-bar">
-                            <div class="confidence-fill" style="width: ${confidence}%"></div>
-                        </div>
-                    </div>
+            // Stats
+            const statsGrid = document.getElementById('statsGrid');
+            statsGrid.innerHTML = `
+                <div class="stat-item">
+                    <div class="stat-value">${intents.length}</div>
+                    <div class="stat-label">Intents Found</div>
                 </div>
-                <div class="intent-action">${intent.action || 'No action specified'}</div>
-                <div class="intent-meta">
-                    <span class="meta-tag urgency-${intent.urgency || 'normal'}">
-                        ${(intent.urgency || 'normal').toUpperCase()}
-                    </span>
-                    ${intent.is_explicit ? '<span class="meta-tag">Explicit</span>' : '<span class="meta-tag">Implicit</span>'}
+                <div class="stat-item">
+                    <div class="stat-value">${intents.filter(i => i.is_explicit).length}</div>
+                    <div class="stat-label">Explicit</div>
                 </div>
-                ${entitiesHtml}
+                <div class="stat-item">
+                    <div class="stat-value">${intents.filter(i => !i.is_explicit).length}</div>
+                    <div class="stat-label">Implicit</div>
+                </div>
             `;
 
-            return card;
-        }
+            // Intents
+            const intentsList = document.getElementById('intentsList');
+            if (intents.length === 0) {
+                intentsList.innerHTML = '<div style="text-align: center; color: #888; padding: 40px;">No actionable intents detected.</div>';
+            } else {
+                intentsList.innerHTML = intents.map(intent => {
+                    const confidence = Math.round((intent.confidence || 0) * 100);
+                    const level = confidence >= 80 ? 'high' : confidence >= 50 ? 'medium' : 'low';
 
-        function formatKey(key) {
-            return key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-        }
+                    const entities = intent.entities || {};
+                    const entityTags = Object.entries(entities).map(([key, value]) =>
+                        `<span class="entity-tag"><span class="entity-key">${key}:</span> <span class="entity-value">${value}</span></span>`
+                    ).join('');
 
-        // Allow Enter key to submit
-        document.getElementById('inputText').addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && e.metaKey) {
-                extractIntents();
+                    return `
+                        <div class="intent-item ${level}">
+                            <div class="intent-header">
+                                <div>
+                                    <span class="intent-type">${intent.intent_type || 'unknown'}</span>
+                                    <div class="intent-action">${intent.action || 'No action specified'}</div>
+                                </div>
+                                <div class="confidence-bar">
+                                    <div class="confidence-track">
+                                        <div class="confidence-fill ${level}" style="width: ${confidence}%"></div>
+                                    </div>
+                                    <span class="confidence-text">${confidence}%</span>
+                                </div>
+                            </div>
+                            <div class="intent-meta">
+                                <span class="meta-tag ${intent.is_explicit ? 'explicit' : 'implicit'}">${intent.is_explicit ? 'Explicit' : 'Implicit'}</span>
+                                <span class="meta-tag ${intent.urgency === 'immediate' || intent.urgency === 'urgent' ? 'urgent' : ''}">${(intent.urgency || 'normal').toUpperCase()}</span>
+                            </div>
+                            ${entityTags ? `<div class="entities-list">${entityTags}</div>` : ''}
+                        </div>
+                    `;
+                }).join('');
             }
+
+            // Actions
+            if (intents.length > 0) {
+                const actionsCard = document.getElementById('actionsCard');
+                const actionsList = document.getElementById('actionsList');
+                actionsCard.style.display = 'block';
+
+                actionsList.innerHTML = intents.map(intent => {
+                    const integrations = getIntegrations(intent.intent_type);
+                    return `
+                        <div class="action-item">
+                            <div class="action-info">
+                                <div class="action-name">${intent.action || 'Execute action'}</div>
+                                <div class="action-integrations">Via: ${integrations.join(', ')}</div>
+                            </div>
+                            <div class="action-status">
+                                <div class="status-indicator ready"></div>
+                                <span style="color: #00ff88; font-size: 0.85rem;">Ready</span>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+
+        function getIntegrations(intentType) {
+            const map = {
+                'schedule': ['Google Calendar', 'Apple Calendar'],
+                'transport': ['Uber', 'Lyft'],
+                'purchase': ['DoorDash', 'UberEats', 'Amazon'],
+                'message': ['Gmail', 'Slack', 'SMS'],
+                'reminder': ['Todoist', 'Apple Reminders'],
+                'booking': ['OpenTable', 'Resy'],
+                'task': ['Todoist', 'Asana'],
+                'notification': ['Push', 'Email'],
+                'information': ['Search', 'Knowledge Base']
+            };
+            return map[intentType] || ['AOP Core'];
+        }
+
+        document.getElementById('newAnalysisBtn').addEventListener('click', () => {
+            document.getElementById('resultsSection').classList.remove('visible');
+            document.getElementById('inputSection').style.display = 'block';
+            document.getElementById('textInput').value = '';
+            clearRecordingState();
+            fileInput.value = '';
+            fileName.style.display = 'none';
         });
+
+        function showError(msg) {
+            const el = document.getElementById('errorMessage');
+            el.textContent = msg;
+            el.classList.add('visible');
+        }
+
+        function hideError() {
+            document.getElementById('errorMessage').classList.remove('visible');
+        }
+
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.add('visible');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('visible');
+        }
     </script>
 </body>
 </html>
